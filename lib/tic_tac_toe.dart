@@ -11,7 +11,7 @@ class TicTacToe extends StatefulWidget {
 
 class _TicTacToeState extends State<TicTacToe> {
   late String winner;
-  late Mark currentPlayer;
+  Mark currentPlayer = Mark.empty;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
   void _changeState(int index) {
@@ -96,6 +96,5 @@ class _TileStateState extends State<TileState> {
     } else {
       return const Placeholder();
     }
-    
   }
 }
