@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+enum Mark { X, O, empty }
+
 class TicTacToe extends StatefulWidget {
   const TicTacToe({super.key});
 
@@ -8,7 +10,10 @@ class TicTacToe extends StatefulWidget {
 }
 
 class _TicTacToeState extends State<TicTacToe> {
-  List<bool> tilesState = List.generate(9, (index) => true);
+  late String winner, currentPlayer;
+  bool isDraw = false;
+  List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +34,46 @@ class _TicTacToeState extends State<TicTacToe> {
           children: [
             const Text('Player "X"'),
             SizedBox(
-              width: double.infinity,
+              width: 400,
               height: 400,
               child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
                   itemCount: 9,
                   itemBuilder: (BuildContext context, index) {
                     return MaterialButton(
-                      onPressed: () {},
-                      // child: ,
-                    );
+                        onPressed: () {},
+                        // child: ,
+                        color: Colors.black12);
                   }),
-            )
+            ),
+            const Text('Player "O"'),
           ]),
     );
+  }
+}
+
+// ignore: must_be_immutable
+class TileState extends StatelessWidget {
+  late Mark state;
+  TileState({required Mark state, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    if (state == Mark.empty) {
+      return MaterialButton(
+        onPressed: () {},
+      );
+    } else if (state == Mark.X) {
+      return MaterialButton(onPressed: () {});
+    } else if (state == Mark.O) {
+      return MaterialButton(onPressed: () {});
+    } else {
+      return const Placeholder();
+    }
+    ;
   }
 }
