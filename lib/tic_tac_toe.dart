@@ -10,9 +10,19 @@ class TicTacToe extends StatefulWidget {
 }
 
 class _TicTacToeState extends State<TicTacToe> {
-  late String winner, currentPlayer;
+  late String winner;
+  late Mark currentPlayer;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
+  void _changeState(int index) {
+    if (boardState[index] == Mark.empty) {
+      if (currentPlayer == Mark.X) {
+        boardState[index] == Mark.X;
+      } else if (currentPlayer == Mark.O) {
+        boardState[index] == Mark.O;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +76,26 @@ class _TileStateState extends State<TileState> {
   @override
   Widget build(BuildContext context) {
     if (widget.state == Mark.empty) {
-      return MaterialButton(onPressed: () {}, color: Colors.red);
+      return MaterialButton(
+          onPressed: () {
+            setState(() {});
+          },
+          color: Colors.red);
     } else if (widget.state == Mark.X) {
-      return MaterialButton(onPressed: () {}, color: Colors.yellow);
+      return MaterialButton(
+          onPressed: () {
+            setState(() {});
+          },
+          color: Colors.yellow);
     } else if (widget.state == Mark.O) {
-      return MaterialButton(onPressed: () {}, color: Colors.orange);
+      return MaterialButton(
+          onPressed: () {
+            setState(() {});
+          },
+          color: Colors.orange);
     } else {
       return const Placeholder();
     }
-    ;
+    
   }
 }
