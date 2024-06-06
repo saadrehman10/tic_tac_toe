@@ -44,10 +44,7 @@ class _TicTacToeState extends State<TicTacToe> {
                   ),
                   itemCount: 9,
                   itemBuilder: (BuildContext context, index) {
-                    return MaterialButton(
-                        onPressed: () {},
-                        // child: ,
-                        color: Colors.black12);
+                    return TileState(state: boardState[index]);
                   }),
             ),
             const Text('Player "O"'),
@@ -57,20 +54,23 @@ class _TicTacToeState extends State<TicTacToe> {
 }
 
 // ignore: must_be_immutable
-class TileState extends StatelessWidget {
-  late Mark state;
-  TileState({required Mark state, super.key});
+class TileState extends StatefulWidget {
+  Mark? state;
+  TileState({this.state, super.key});
 
   @override
+  State<TileState> createState() => _TileStateState();
+}
+
+class _TileStateState extends State<TileState> {
+  @override
   Widget build(BuildContext context) {
-    if (state == Mark.empty) {
-      return MaterialButton(
-        onPressed: () {},
-      );
-    } else if (state == Mark.X) {
-      return MaterialButton(onPressed: () {});
-    } else if (state == Mark.O) {
-      return MaterialButton(onPressed: () {});
+    if (widget.state == Mark.empty) {
+      return MaterialButton(onPressed: () {}, color: Colors.red);
+    } else if (widget.state == Mark.X) {
+      return MaterialButton(onPressed: () {}, color: Colors.yellow);
+    } else if (widget.state == Mark.O) {
+      return MaterialButton(onPressed: () {}, color: Colors.orange);
     } else {
       return const Placeholder();
     }
