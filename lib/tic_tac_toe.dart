@@ -35,7 +35,7 @@ class _TicTacToeState extends State<TicTacToe> {
   void _checkIsDraw() {
     setState(() {
       bool allboxes = boardState.every((element) => element != Mark.empty);
-      if (allboxes && winner == Mark.empty) {
+      if (allboxes && winner != Mark.empty) {
         isDraw = true;
       } else {
         isDraw = false;
@@ -48,25 +48,60 @@ class _TicTacToeState extends State<TicTacToe> {
       boardState = List<Mark>.generate(9, (index) => Mark.empty);
       currentPlayer = Mark.X;
       isDraw = false;
+      winner = Mark.empty;
     });
   }
 
   Icon? markIcon(state) {
     if (state == Mark.X) {
-      return const Icon(Icons.clear, size: 50, color: Colors.white);
+      return const Icon(Icons.clear, size: 93, color: Colors.white);
     } else if (state == Mark.O) {
-      return const Icon(Icons.circle_outlined, size: 50, color: Colors.white);
+      return const Icon(Icons.circle_outlined, size: 93, color: Colors.white);
     } else {
       return null;
     }
   }
 
-  void _checkWinner() {
-    
+  String _bannerText() {
+    if (winner == Mark.O) {
+      return 'Winner\nPlayer O';
+    } else if (winner == Mark.X) {
+      return 'Winner\nPlayer X';
+    } else {
+      return 'D R A W';
+    }
+  }
+
+  bool _checkWinner(player) {
+    if (boardState[0] == player &&
+        boardState[4] == player &&
+        boardState[8] == player) {
+      return true;
+    }
+    if (boardState[2] == player &&
+        boardState[4] == player &&
+        boardState[6] == player) {
+      return true;
+    }
+    for (int i = 0; i < 3; i++) {
+      if (boardState[i * 3] == player &&
+          boardState[i * 3 + 1] == player &&
+          boardState[i * 3 + 2] == player) {
+        return true;
+      }
+      if (boardState[i] == player &&
+          boardState[i + 3] == player &&
+          boardState[i + 6] == player) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   @override
   Widget build(BuildContext context) {
+    _checkWinner(currentPlayer);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -130,6 +165,9 @@ class _TicTacToeState extends State<TicTacToe> {
                               });
                             },
                             onPressed: () {
+                              _checkWinner(currentPlayer)
+                                  ? winner = currentPlayer
+                                  : null;
                               _changeState(index);
                               _checkIsDraw();
                             },
@@ -141,9 +179,9 @@ class _TicTacToeState extends State<TicTacToe> {
                         }),
                   ),
                   Visibility(
-                    visible: isDraw,
-                    child: const BannerDisplayed(
-                      textDisplayed: 'D R A W',
+                    visible: isDraw || winner != Mark.empty,
+                    child: BannerDisplayed(
+                      textDisplayed: _bannerText(),
                     ),
                   ),
                 ],
