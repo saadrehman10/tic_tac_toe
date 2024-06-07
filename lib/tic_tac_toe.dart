@@ -64,9 +64,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       },
                       color: Colors.red,
                       child: Center(
-                        child: currentPlayer == Mark.X
-                            ? const Icon(Icons.circle_outlined, size: 50)
-                            : const Icon(Icons.favorite, size: 50),
+                        child: TileState(state: Mark.O),
                       ),
                     );
                   }),
@@ -77,3 +75,26 @@ class _TicTacToeState extends State<TicTacToe> {
   }
 }
 
+// ignore: must_be_immutable
+class TileState extends StatefulWidget {
+  Mark? state;
+  TileState({this.state, super.key});
+
+  @override
+  State<TileState> createState() => _TileStateState();
+}
+
+class _TileStateState extends State<TileState> {
+  @override
+  Widget build(BuildContext context) {
+    if (widget.state == Mark.empty) {
+      return const Icon(Icons.new_label, size: 0);
+    } else if (widget.state == Mark.X) {
+      return const Icon(Icons.clear, size: 50);
+    } else if (widget.state == Mark.O) {
+      return const Icon(Icons.circle_outlined, size: 50);
+    } else {
+      return const Placeholder();
+    }
+  }
+}
