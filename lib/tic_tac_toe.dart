@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 enum Mark { X, O, empty }
 
@@ -11,10 +12,12 @@ class TicTacToe extends StatefulWidget {
 
 class _TicTacToeState extends State<TicTacToe> {
   late String winner;
-  Mark currentPlayer = Mark.X;
+  Mark currentPlayer = Mark.empty;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
+
   void changeState(int index) {
+    currentPlayer = Mark.X;
     if (boardState[index] == Mark.empty) {
       if (currentPlayer == Mark.X) {
         boardState[index] = Mark.X;
@@ -47,8 +50,20 @@ class _TicTacToeState extends State<TicTacToe> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                  width: double.infinity, child: const Text('Player "X"')),
+              Center(
+                child: Container(
+                    margin: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color:
+                          currentPlayer == Mark.X ? Colors.green : Colors.red,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    alignment: Alignment.center,
+                    width: 350,
+                    height: 100,
+                    child: const Text('Player "X"',
+                        style: TextStyle(fontSize: 40))),
+              ),
               SizedBox(
                 width: 400,
                 height: 400,
@@ -79,25 +94,50 @@ class _TicTacToeState extends State<TicTacToe> {
                       );
                     }),
               ),
-              const Text('Player "O"'),
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      boardState =
-                          List<Mark>.generate(9, (index) => Mark.empty);
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10)),
-                  child: const Text(
-                    'R E S E T',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+              Center(
+                child: Container(
+                    margin: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color:
+                          currentPlayer == Mark.O && currentPlayer != Mark.empty
+                              ? Colors.green
+                              : Colors.red,
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                  ))
+                    alignment: Alignment.center,
+                    width: 350,
+                    height: 100,
+                    child: Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.identity()
+                        ..rotateX(pi)
+                        ..rotateY(pi),
+                      child: const Text('Player "O"',
+                          style: TextStyle(fontSize: 40)),
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            boardState =
+                                List<Mark>.generate(9, (index) => Mark.empty);
+                            currentPlayer = Mark.empty;
+                          });
+                        },
+                        style: IconButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          padding: const EdgeInsets.all(10),
+                        ),
+                        icon: const Icon(Icons.loop,
+                            size: 23, color: Colors.white)),
+                  ],
+                ),
+              )
             ]),
       ),
     );
