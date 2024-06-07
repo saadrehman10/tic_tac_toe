@@ -64,7 +64,7 @@ class _TicTacToeState extends State<TicTacToe> {
                             currentPlayer = Mark.O;
                           } else if (currentPlayer == Mark.O) {
                             boardState[index] = Mark.O;
-                            currentPlayer = Mark.O;
+                            currentPlayer = Mark.X;
                           }
                         });
                       },
