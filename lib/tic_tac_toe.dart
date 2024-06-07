@@ -17,9 +17,11 @@ class _TicTacToeState extends State<TicTacToe> {
   void changeState(int index) {
     if (boardState[index] == Mark.empty) {
       if (currentPlayer == Mark.X) {
-        boardState[index] == Mark.X;
+        boardState[index] = Mark.X;
+        currentPlayer = Mark.O;
       } else if (currentPlayer == Mark.O) {
-        boardState[index] == Mark.O;
+        boardState[index] = Mark.O;
+        currentPlayer = Mark.X;
       }
     } else {
       null;
@@ -57,18 +59,17 @@ class _TicTacToeState extends State<TicTacToe> {
                   itemCount: 9,
                   itemBuilder: (BuildContext context, index) {
                     return MaterialButton(
-                      onPressed: () {
+                      onLongPress: () {
                         setState(() {
-                          if (currentPlayer == Mark.X) {
-                            boardState[index] = Mark.X;
-                            currentPlayer = Mark.O;
-                          } else if (currentPlayer == Mark.O) {
-                            boardState[index] = Mark.O;
-                            currentPlayer = Mark.X;
-                          }
+                          boardState[index] = Mark.empty;
                         });
                       },
-                      color: Colors.red,
+                      onPressed: () {
+                        setState(() {
+                          changeState(index);
+                        });
+                      },
+                      color: const Color.fromRGBO(212, 212, 212, 1),
                       child: Center(
                         child: TileState(state: boardState[index]),
                       ),
@@ -77,7 +78,11 @@ class _TicTacToeState extends State<TicTacToe> {
             ),
             const Text('Player "O"'),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    boardState = List<Mark>.generate(9, (index) => Mark.empty);
+                  });
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 10)),
