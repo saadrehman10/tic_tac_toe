@@ -61,7 +61,9 @@ class _TicTacToeState extends State<TicTacToe> {
     }
   }
 
-  void _checkWinner() {}
+  void _checkWinner() {
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,18 +142,8 @@ class _TicTacToeState extends State<TicTacToe> {
                   ),
                   Visibility(
                     visible: isDraw,
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 401,
-                      width: 401,
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                      ),
-                      child: const Text('D R A W',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 60,
-                          )),
+                    child: const BannerDisplayed(
+                      textDisplayed: 'D R A W',
                     ),
                   ),
                 ],
