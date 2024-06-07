@@ -76,6 +76,19 @@ class _TicTacToeState extends State<TicTacToe> {
                   }),
             ),
             const Text('Player "O"'),
+            ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10)),
+                child: const Text(
+                  'R E S E T',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ))
           ]),
     );
   }
