@@ -16,7 +16,7 @@ class _TicTacToeState extends State<TicTacToe> {
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
 
-  void changeState(int index) {
+  void _changeState(int index) {
     setState(() {
       if (boardState[index] == Mark.empty) {
         if (currentPlayer == Mark.X) {
@@ -32,7 +32,7 @@ class _TicTacToeState extends State<TicTacToe> {
     });
   }
 
-  void checkIsDraw() {
+  void _checkIsDraw() {
     setState(() {
       bool allboxes = boardState.every((element) => element != Mark.empty);
       if (allboxes) {
@@ -43,7 +43,7 @@ class _TicTacToeState extends State<TicTacToe> {
     });
   }
 
-  void resetState() {
+  void _resetState() {
     setState(() {
       boardState = List<Mark>.generate(9, (index) => Mark.empty);
       currentPlayer = Mark.X;
@@ -90,34 +90,55 @@ class _TicTacToeState extends State<TicTacToe> {
                               : Colors.black,
                         ))),
               ),
-              SizedBox(
-                width: 400,
-                height: 400,
-                child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemCount: 9,
-                    itemBuilder: (BuildContext context, index) {
-                      return MaterialButton(
-                        onLongPress: () {
-                          setState(() {
-                            boardState[index] = Mark.empty;
-                          });
-                        },
-                        onPressed: () {
-                          changeState(index);
-                          checkIsDraw();
-                        },
-                        color: const Color.fromARGB(255, 230, 230, 230),
-                        child: Center(
-                          child: TileState(state: boardState[index]),
+              Stack(
+                children: [
+                  SizedBox(
+                    width: 400,
+                    height: 400,
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
                         ),
-                      );
-                    }),
+                        itemCount: 9,
+                        itemBuilder: (BuildContext context, index) {
+                          return MaterialButton(
+                            onLongPress: () {
+                              setState(() {
+                                boardState[index] = Mark.empty;
+                              });
+                            },
+                            onPressed: () {
+                              _changeState(index);
+                              _checkIsDraw();
+                            },
+                            color: const Color.fromARGB(255, 230, 230, 230),
+                            child: Center(
+                              child: TileState(state: boardState[index]),
+                            ),
+                          );
+                        }),
+                  ),
+                  Visibility(
+                    visible: isDraw,
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 400,
+                      width: 400,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Text('D R A W',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 60,
+                          )),
+                    ),
+                  ),
+                ],
               ),
               Center(
                 child: Container(
@@ -152,7 +173,7 @@ class _TicTacToeState extends State<TicTacToe> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          resetState();
+                          _resetState();
                         },
                         style: IconButton.styleFrom(
                           backgroundColor: Colors.black,
