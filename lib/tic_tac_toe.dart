@@ -114,7 +114,7 @@ class _TicTacToeState extends State<TicTacToe> {
                               _changeState(index);
                               _checkIsDraw();
                             },
-                            color: const Color.fromARGB(255, 230, 230, 230),
+                            color: Color.fromARGB(255, 0, 0, 0),
                             child: Center(
                               child: TileState(state: boardState[index]),
                             ),
@@ -128,12 +128,12 @@ class _TicTacToeState extends State<TicTacToe> {
                       height: 400,
                       width: 400,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.black,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text('D R A W',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontSize: 60,
                           )),
                     ),
@@ -200,9 +200,9 @@ class TileState extends StatelessWidget {
     if (state == Mark.empty) {
       return const Icon(Icons.new_label, size: 0);
     } else if (state == Mark.X) {
-      return const Icon(Icons.clear, size: 50);
+      return const Icon(Icons.clear, size: 50, color: Colors.white);
     } else if (state == Mark.O) {
-      return const Icon(Icons.circle_outlined, size: 50);
+      return const Icon(Icons.circle_outlined, size: 50, color: Colors.white);
     } else {
       return const Placeholder();
     }
