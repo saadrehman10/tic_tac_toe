@@ -42,59 +42,64 @@ class _TicTacToeState extends State<TicTacToe> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text('Player "X"'),
-            SizedBox(
-              width: 400,
-              height: 400,
-              child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemCount: 9,
-                  itemBuilder: (BuildContext context, index) {
-                    return MaterialButton(
-                      onLongPress: () {
-                        setState(() {
-                          boardState[index] = Mark.empty;
-                        });
-                      },
-                      onPressed: () {
-                        setState(() {
-                          changeState(index);
-                        });
-                      },
-                      color: const Color.fromRGBO(212, 212, 212, 1),
-                      child: Center(
-                        child: TileState(state: boardState[index]),
-                      ),
-                    );
-                  }),
-            ),
-            const Text('Player "O"'),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    boardState = List<Mark>.generate(9, (index) => Mark.empty);
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 10)),
-                child: const Text(
-                  'R E S E T',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ))
-          ]),
+      body: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                  width: double.infinity, child: const Text('Player "X"')),
+              SizedBox(
+                width: 400,
+                height: 400,
+                child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: 9,
+                    itemBuilder: (BuildContext context, index) {
+                      return MaterialButton(
+                        onLongPress: () {
+                          setState(() {
+                            boardState[index] = Mark.empty;
+                          });
+                        },
+                        onPressed: () {
+                          setState(() {
+                            changeState(index);
+                          });
+                        },
+                        color: const Color.fromRGBO(212, 212, 212, 1),
+                        child: Center(
+                          child: TileState(state: boardState[index]),
+                        ),
+                      );
+                    }),
+              ),
+              const Text('Player "O"'),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      boardState =
+                          List<Mark>.generate(9, (index) => Mark.empty);
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10)),
+                  child: const Text(
+                    'R E S E T',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ))
+            ]),
+      ),
     );
   }
 }
