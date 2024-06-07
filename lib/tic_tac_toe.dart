@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets.dart';
 import 'dart:math';
 
 enum Mark { X, O, empty }
@@ -11,8 +12,7 @@ class TicTacToe extends StatefulWidget {
 }
 
 class _TicTacToeState extends State<TicTacToe> {
-  late String winner;
-  Mark currentPlayer = Mark.X;
+  Mark currentPlayer = Mark.X, winner = Mark.empty;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
 
@@ -35,7 +35,7 @@ class _TicTacToeState extends State<TicTacToe> {
   void _checkIsDraw() {
     setState(() {
       bool allboxes = boardState.every((element) => element != Mark.empty);
-      if (allboxes) {
+      if (allboxes && winner != Mark.empty) {
         isDraw = true;
       } else {
         isDraw = false;
@@ -51,15 +51,30 @@ class _TicTacToeState extends State<TicTacToe> {
     });
   }
 
+  Widget markIcon(state) {
+    if (state == Mark.empty) {
+      return const Icon(Icons.new_label, size: 0);
+    } else if (state == Mark.X) {
+      return const Icon(Icons.clear, size: 50, color: Colors.white);
+    } else if (state == Mark.O) {
+      return const Icon(Icons.circle_outlined, size: 50, color: Colors.white);
+    } else {
+      return const Placeholder();
+    }
+  }
+
+  void _checkWinner() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 22, 22, 22),
         title: const Text(
           'T I C  T A C  T O E',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -98,7 +113,7 @@ class _TicTacToeState extends State<TicTacToe> {
                     height: 401,
                     alignment: Alignment.center,
                     color: const Color.fromARGB(255, 40, 40, 40),
-                    padding: const EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(5),
                     child: GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
@@ -120,7 +135,7 @@ class _TicTacToeState extends State<TicTacToe> {
                             },
                             color: Colors.black,
                             child: Center(
-                              child: TileState(state: boardState[index]),
+                              child: markIcon(boardState[index]),
                             ),
                           );
                         }),
@@ -143,32 +158,30 @@ class _TicTacToeState extends State<TicTacToe> {
                   ),
                 ],
               ),
-              Center(
-                child: Container(
-                    margin: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: currentPlayer == Mark.O && isDraw == false
-                          ? Colors.green
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
+              Container(
+                  margin: const EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: currentPlayer == Mark.O && isDraw == false
+                        ? Colors.green
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  alignment: Alignment.center,
+                  width: 350,
+                  height: 100,
+                  child: Transform(
                     alignment: Alignment.center,
-                    width: 350,
-                    height: 100,
-                    child: Transform(
-                      alignment: Alignment.center,
-                      transform: Matrix4.identity()
-                        ..rotateX(pi)
-                        ..rotateY(pi),
-                      child: Text('Player "O"',
-                          style: TextStyle(
-                            fontSize: 40,
-                            color: currentPlayer == Mark.O && isDraw == false
-                                ? Colors.white
-                                : Colors.black,
-                          )),
-                    )),
-              ),
+                    transform: Matrix4.identity()
+                      ..rotateX(pi)
+                      ..rotateY(pi),
+                    child: Text('Player "O"',
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: currentPlayer == Mark.O && isDraw == false
+                              ? Colors.white
+                              : Colors.black,
+                        )),
+                  )),
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: Row(
@@ -180,7 +193,7 @@ class _TicTacToeState extends State<TicTacToe> {
                         },
                         style: IconButton.styleFrom(
                           backgroundColor:
-                              const Color.fromARGB(255, 40, 40, 40),
+                              const Color.fromARGB(255, 22, 22, 22),
                           padding: const EdgeInsets.all(10),
                         ),
                         icon: const Icon(Icons.loop,
@@ -191,24 +204,5 @@ class _TicTacToeState extends State<TicTacToe> {
             ]),
       ),
     );
-  }
-}
-
-// ignore: must_be_immutable
-class TileState extends StatelessWidget {
-  Mark? state;
-  TileState({this.state, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    if (state == Mark.empty) {
-      return const Icon(Icons.new_label, size: 0);
-    } else if (state == Mark.X) {
-      return const Icon(Icons.clear, size: 50, color: Colors.white);
-    } else if (state == Mark.O) {
-      return const Icon(Icons.circle_outlined, size: 50, color: Colors.white);
-    } else {
-      return const Placeholder();
-    }
   }
 }
