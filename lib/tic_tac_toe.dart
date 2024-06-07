@@ -27,7 +27,7 @@ class _TicTacToeState extends State<TicTacToe> {
           currentPlayer = Mark.X;
         }
       } else {
-        null;
+        boardState[index] == Mark.empty;
       }
     });
   }
@@ -35,7 +35,7 @@ class _TicTacToeState extends State<TicTacToe> {
   void _checkIsDraw() {
     setState(() {
       bool allboxes = boardState.every((element) => element != Mark.empty);
-      if (allboxes && winner != Mark.empty) {
+      if (allboxes && winner == Mark.empty) {
         isDraw = true;
       } else {
         isDraw = false;
@@ -51,15 +51,13 @@ class _TicTacToeState extends State<TicTacToe> {
     });
   }
 
-  Widget markIcon(state) {
-    if (state == Mark.empty) {
-      return const Icon(Icons.new_label, size: 0);
-    } else if (state == Mark.X) {
+  Icon? markIcon(state) {
+    if (state == Mark.X) {
       return const Icon(Icons.clear, size: 50, color: Colors.white);
     } else if (state == Mark.O) {
       return const Icon(Icons.circle_outlined, size: 50, color: Colors.white);
     } else {
-      return const Placeholder();
+      return null;
     }
   }
 
@@ -109,8 +107,8 @@ class _TicTacToeState extends State<TicTacToe> {
               Stack(
                 children: [
                   Container(
-                    width: 401,
-                    height: 401,
+                    width: 400,
+                    height: 400,
                     alignment: Alignment.center,
                     color: const Color.fromARGB(255, 40, 40, 40),
                     padding: const EdgeInsets.all(5),
@@ -118,8 +116,8 @@ class _TicTacToeState extends State<TicTacToe> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
-                          crossAxisSpacing: 9,
-                          mainAxisSpacing: 9,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
                         ),
                         itemCount: 9,
                         itemBuilder: (BuildContext context, index) {
