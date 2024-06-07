@@ -14,7 +14,7 @@ class _TicTacToeState extends State<TicTacToe> {
   Mark currentPlayer = Mark.empty;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
-  void _changeState(int index) {
+  void changeState(int index) {
     if (boardState[index] == Mark.empty) {
       if (currentPlayer == Mark.X) {
         boardState[index] == Mark.X;
@@ -56,7 +56,19 @@ class _TicTacToeState extends State<TicTacToe> {
                   ),
                   itemCount: 9,
                   itemBuilder: (BuildContext context, index) {
-                    return TileState(state: boardState[index]);
+                    return MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          currentPlayer = Mark.X;
+                        });
+                      },
+                      color: Colors.red,
+                      child: Center(
+                        child: currentPlayer == Mark.X
+                            ? const Icon(Icons.circle_outlined, size: 50)
+                            : const Icon(Icons.favorite, size: 50),
+                      ),
+                    );
                   }),
             ),
             const Text('Player "O"'),
@@ -65,38 +77,3 @@ class _TicTacToeState extends State<TicTacToe> {
   }
 }
 
-// ignore: must_be_immutable
-class TileState extends StatefulWidget {
-  Mark? state;
-  TileState({this.state, super.key});
-
-  @override
-  State<TileState> createState() => _TileStateState();
-}
-
-class _TileStateState extends State<TileState> {
-  @override
-  Widget build(BuildContext context) {
-    if (widget.state == Mark.empty) {
-      return MaterialButton(
-          onPressed: () {
-            setState(() {});
-          },
-          color: Colors.red);
-    } else if (widget.state == Mark.X) {
-      return MaterialButton(
-          onPressed: () {
-            setState(() {});
-          },
-          color: Colors.yellow);
-    } else if (widget.state == Mark.O) {
-      return MaterialButton(
-          onPressed: () {
-            setState(() {});
-          },
-          color: Colors.orange);
-    } else {
-      return const Placeholder();
-    }
-  }
-}
