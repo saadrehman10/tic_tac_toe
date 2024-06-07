@@ -54,6 +54,7 @@ class _TicTacToeState extends State<TicTacToe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text(
           'T I C  T A C  T O E',
@@ -92,15 +93,18 @@ class _TicTacToeState extends State<TicTacToe> {
               ),
               Stack(
                 children: [
-                  SizedBox(
-                    width: 400,
-                    height: 400,
+                  Container(
+                    width: 401,
+                    height: 401,
+                    alignment: Alignment.center,
+                    color: const Color.fromARGB(255, 40, 40, 40),
+                    padding: const EdgeInsets.all(0),
                     child: GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 9,
+                          mainAxisSpacing: 9,
                         ),
                         itemCount: 9,
                         itemBuilder: (BuildContext context, index) {
@@ -114,7 +118,7 @@ class _TicTacToeState extends State<TicTacToe> {
                               _changeState(index);
                               _checkIsDraw();
                             },
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Colors.black,
                             child: Center(
                               child: TileState(state: boardState[index]),
                             ),
@@ -125,11 +129,10 @@ class _TicTacToeState extends State<TicTacToe> {
                     visible: isDraw,
                     child: Container(
                       alignment: Alignment.center,
-                      height: 400,
-                      width: 400,
-                      decoration: BoxDecoration(
+                      height: 401,
+                      width: 401,
+                      decoration: const BoxDecoration(
                         color: Colors.black,
-                        borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text('D R A W',
                           style: TextStyle(
@@ -176,7 +179,8 @@ class _TicTacToeState extends State<TicTacToe> {
                           _resetState();
                         },
                         style: IconButton.styleFrom(
-                          backgroundColor: Colors.black,
+                          backgroundColor:
+                              const Color.fromARGB(255, 40, 40, 40),
                           padding: const EdgeInsets.all(10),
                         ),
                         icon: const Icon(Icons.loop,
