@@ -12,12 +12,11 @@ class TicTacToe extends StatefulWidget {
 
 class _TicTacToeState extends State<TicTacToe> {
   late String winner;
-  Mark currentPlayer = Mark.empty;
+  Mark currentPlayer = Mark.X;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
 
   void changeState(int index) {
-    currentPlayer = Mark.X;
     if (boardState[index] == Mark.empty) {
       if (currentPlayer == Mark.X) {
         boardState[index] = Mark.X;
@@ -55,14 +54,19 @@ class _TicTacToeState extends State<TicTacToe> {
                     margin: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color:
-                          currentPlayer == Mark.X ? Colors.green : Colors.red,
+                          currentPlayer == Mark.X ? Colors.green : Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     alignment: Alignment.center,
                     width: 350,
                     height: 100,
-                    child: const Text('Player "X"',
-                        style: TextStyle(fontSize: 40))),
+                    child: Text('Player "X"',
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: currentPlayer == Mark.X
+                              ? Colors.white
+                              : Colors.black,
+                        ))),
               ),
               SizedBox(
                 width: 400,
@@ -99,9 +103,7 @@ class _TicTacToeState extends State<TicTacToe> {
                     margin: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color:
-                          currentPlayer == Mark.O && currentPlayer != Mark.empty
-                              ? Colors.green
-                              : Colors.red,
+                          currentPlayer == Mark.O ? Colors.green : Colors.white,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     alignment: Alignment.center,
@@ -112,8 +114,13 @@ class _TicTacToeState extends State<TicTacToe> {
                       transform: Matrix4.identity()
                         ..rotateX(pi)
                         ..rotateY(pi),
-                      child: const Text('Player "O"',
-                          style: TextStyle(fontSize: 40)),
+                      child: Text('Player "O"',
+                          style: TextStyle(
+                            fontSize: 40,
+                            color: currentPlayer == Mark.O
+                                ? Colors.white
+                                : Colors.black,
+                          )),
                     )),
               ),
               Padding(
@@ -126,7 +133,7 @@ class _TicTacToeState extends State<TicTacToe> {
                           setState(() {
                             boardState =
                                 List<Mark>.generate(9, (index) => Mark.empty);
-                            currentPlayer = Mark.empty;
+                            currentPlayer = Mark.X;
                           });
                         },
                         style: IconButton.styleFrom(
