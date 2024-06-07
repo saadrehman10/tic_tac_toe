@@ -17,17 +17,38 @@ class _TicTacToeState extends State<TicTacToe> {
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
 
   void changeState(int index) {
-    if (boardState[index] == Mark.empty) {
-      if (currentPlayer == Mark.X) {
-        boardState[index] = Mark.X;
-        currentPlayer = Mark.O;
-      } else if (currentPlayer == Mark.O) {
-        boardState[index] = Mark.O;
-        currentPlayer = Mark.X;
+    setState(() {
+      if (boardState[index] == Mark.empty) {
+        if (currentPlayer == Mark.X) {
+          boardState[index] = Mark.X;
+          currentPlayer = Mark.O;
+        } else if (currentPlayer == Mark.O) {
+          boardState[index] = Mark.O;
+          currentPlayer = Mark.X;
+        }
+      } else {
+        null;
       }
-    } else {
-      null;
-    }
+    });
+  }
+
+  void checkIsDraw() {
+    setState(() {
+      bool allboxes = boardState.every((element) => element != Mark.empty);
+      if (allboxes) {
+        isDraw = true;
+      } else {
+        isDraw = false;
+      }
+    });
+  }
+
+  void resetState() {
+    setState(() {
+      boardState = List<Mark>.generate(9, (index) => Mark.empty);
+      currentPlayer = Mark.X;
+      isDraw = false;
+    });
   }
 
   @override
@@ -53,8 +74,9 @@ class _TicTacToeState extends State<TicTacToe> {
                 child: Container(
                     margin: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color:
-                          currentPlayer == Mark.X ? Colors.green : Colors.white,
+                      color: currentPlayer == Mark.X && isDraw == false
+                          ? Colors.green
+                          : Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     alignment: Alignment.center,
@@ -63,7 +85,7 @@ class _TicTacToeState extends State<TicTacToe> {
                     child: Text('Player "X"',
                         style: TextStyle(
                           fontSize: 40,
-                          color: currentPlayer == Mark.X
+                          color: currentPlayer == Mark.X && isDraw == false
                               ? Colors.white
                               : Colors.black,
                         ))),
@@ -87,11 +109,10 @@ class _TicTacToeState extends State<TicTacToe> {
                           });
                         },
                         onPressed: () {
-                          setState(() {
-                            changeState(index);
-                          });
+                          changeState(index);
+                          checkIsDraw();
                         },
-                        color: const Color.fromRGBO(212, 212, 212, 1),
+                        color: const Color.fromARGB(255, 230, 230, 230),
                         child: Center(
                           child: TileState(state: boardState[index]),
                         ),
@@ -102,8 +123,9 @@ class _TicTacToeState extends State<TicTacToe> {
                 child: Container(
                     margin: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color:
-                          currentPlayer == Mark.O ? Colors.green : Colors.white,
+                      color: currentPlayer == Mark.O && isDraw == false
+                          ? Colors.green
+                          : Colors.white,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     alignment: Alignment.center,
@@ -117,7 +139,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       child: Text('Player "O"',
                           style: TextStyle(
                             fontSize: 40,
-                            color: currentPlayer == Mark.O
+                            color: currentPlayer == Mark.O && isDraw == false
                                 ? Colors.white
                                 : Colors.black,
                           )),
@@ -130,11 +152,7 @@ class _TicTacToeState extends State<TicTacToe> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          setState(() {
-                            boardState =
-                                List<Mark>.generate(9, (index) => Mark.empty);
-                            currentPlayer = Mark.X;
-                          });
+                          resetState();
                         },
                         style: IconButton.styleFrom(
                           backgroundColor: Colors.black,
