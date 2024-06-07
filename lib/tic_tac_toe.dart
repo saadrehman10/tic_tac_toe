@@ -21,6 +21,8 @@ class _TicTacToeState extends State<TicTacToe> {
       } else if (currentPlayer == Mark.O) {
         boardState[index] == Mark.O;
       }
+    } else {
+      null;
     }
   }
 
