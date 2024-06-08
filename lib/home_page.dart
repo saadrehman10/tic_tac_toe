@@ -27,14 +27,14 @@ class MyHomePage extends StatelessWidget {
               decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
-                      gapPadding: 2,
+                      gapPadding: 20,
                       borderSide: BorderSide(
-                        color:Colors.white,
-                        strokeAlign: 4,
+                        color: Colors.white,
+                        strokeAlign: 20,
                         style: BorderStyle.solid,
-                        width: 2,
+                        width: 20,
                       ))),
-              autofillHints: ['Defaut Player X'],
+              controller: TextEditingController(text: 'Player X'),
             ),
             TextButton(
                 onPressed: () {
