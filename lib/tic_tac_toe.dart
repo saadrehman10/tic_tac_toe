@@ -149,34 +149,36 @@ class _TicTacToeState extends State<TicTacToe> {
                     alignment: Alignment.center,
                     color: const Color.fromARGB(255, 40, 40, 40),
                     padding: const EdgeInsets.all(5),
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                        ),
-                        itemCount: 9,
-                        itemBuilder: (BuildContext context, index) {
-                          return MaterialButton(
-                            onLongPress: () {
-                              setState(() {
-                                boardState[index] = Mark.empty;
-                              });
-                            },
-                            onPressed: () {
-                              _checkWinner(currentPlayer)
-                                  ? winner = currentPlayer
-                                  : null;
-                              _changeState(index);
-                              _checkIsDraw();
-                            },
-                            color: Colors.black,
-                            child: Center(
-                              child: markIcon(boardState[index]),
-                            ),
-                          );
-                        }),
+                    child: Expanded(
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 8,
+                          ),
+                          itemCount: 9,
+                          itemBuilder: (BuildContext context, index) {
+                            return MaterialButton(
+                              onLongPress: () {
+                                setState(() {
+                                  boardState[index] = Mark.empty;
+                                });
+                              },
+                              onPressed: () {
+                                _checkWinner(currentPlayer)
+                                    ? winner = currentPlayer
+                                    : null;
+                                _changeState(index);
+                                _checkIsDraw();
+                              },
+                              color: Colors.black,
+                              child: Center(
+                                child: markIcon(boardState[index]),
+                              ),
+                            );
+                          }),
+                    ),
                   ),
                   Visibility(
                     visible: isDraw || winner != Mark.empty,

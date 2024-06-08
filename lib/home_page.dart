@@ -28,7 +28,7 @@ class MyHomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Player "),
+                  Text("Player"),
                   Icon(Icons.clear, size: 20, color: Colors.white),
                   Expanded(
                     child: TextField(
