@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/home_page.dart';
 import './tic_tac_toe.dart';
 
 void main() {
@@ -9,9 +10,13 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TicTacToe(),
+      title: 'Tic Tac Toe',
+      home: MyHomePage(),
+      routes: {
+        '/gamepage': (context) => const TicTacToe(),
+      },
     );
   }
 }

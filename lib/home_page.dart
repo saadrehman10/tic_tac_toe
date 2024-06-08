@@ -29,14 +29,18 @@ class MyHomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(2),
                       gapPadding: 2,
                       borderSide: BorderSide(
-                        color: Colors.white,
+                        color:Colors.white,
                         strokeAlign: 4,
                         style: BorderStyle.solid,
                         width: 2,
                       ))),
               autofillHints: ['Defaut Player X'],
-              autocorrect: true,
-            )
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/gamepage');
+                },
+                child: Text('Start Game')),
           ]),
     );
   }
