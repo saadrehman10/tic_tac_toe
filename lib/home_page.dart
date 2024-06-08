@@ -19,7 +19,25 @@ class MyHomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Placeholder(),
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(2),
+                      gapPadding: 2,
+                      borderSide: BorderSide(
+                        color: Colors.white,
+                        strokeAlign: 4,
+                        style: BorderStyle.solid,
+                        width: 2,
+                      ))),
+              autofillHints: ['Defaut Player X'],
+              autocorrect: true,
+            )
+          ]),
     );
   }
 }
