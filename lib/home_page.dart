@@ -28,14 +28,12 @@ class MyHomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Player"),
-                  Icon(Icons.clear, size: 20, color: Colors.white),
+                  Icon(Icons.clear, size: 65, color: Colors.white),
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(2),
-                              gapPadding: 20,
+                              borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 color: Colors.white,
                                 strokeAlign: 20,
@@ -48,24 +46,46 @@ class MyHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(2),
-                      gapPadding: 20,
-                      borderSide: BorderSide(
-                        color: Colors.white,
-                        strokeAlign: 20,
-                        style: BorderStyle.solid,
-                        width: 20,
-                      ))),
-              controller: TextEditingController(text: 'Player O'),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(3, 0, 6, 0),
+                    child: Icon(
+                      Icons.circle_outlined,
+                      size: 58,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              gapPadding: 20,
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                                strokeAlign: 20,
+                                style: BorderStyle.solid,
+                                width: 20,
+                              ))),
+                      controller: TextEditingController(text: 'Player O'),
+                    ),
+                  ),
+                ],
+              ),
             ),
             TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/gamepage');
                 },
-                child: Text('Start Game')),
+                style: TextButton.styleFrom(padding: EdgeInsets.all(10)),
+                child: Text(
+                  'Start Game',
+                  style: TextStyle(fontSize: 20),
+                )),
           ]),
     );
   }
