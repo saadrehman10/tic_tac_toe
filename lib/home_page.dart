@@ -57,6 +57,11 @@ class MyHomePage extends StatelessWidget {
                       Expanded(
                         child: TextField(
                           decoration: InputDecoration(
+                              hintText: 'Default Player X',
+                              hintStyle: TextStyle(
+                                  color: Color.fromARGB(61, 131, 131, 131),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
@@ -65,7 +70,8 @@ class MyHomePage extends StatelessWidget {
                                     style: BorderStyle.solid,
                                     width: 20,
                                   ))),
-                          controller: TextEditingController(text: 'Player X'),
+                          style: TextStyle(
+                              color: const Color.fromARGB(191, 255, 255, 255)),
                         ),
                       ),
                     ],
@@ -85,18 +91,29 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        child: TextField(
+                        child: TextFormField(
                           decoration: InputDecoration(
+                              hintText: 'Default Player O',
+                              hintStyle: TextStyle(
+                                  color: Color.fromARGB(61, 131, 131, 131),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  gapPadding: 20,
                                   borderSide: BorderSide(
                                     color: Colors.white,
                                     strokeAlign: 20,
                                     style: BorderStyle.solid,
                                     width: 20,
                                   ))),
-                          controller: TextEditingController(text: 'Player O'),
+                          style: TextStyle(
+                              color: const Color.fromARGB(191, 255, 255, 255)),
+                          validator: (value) {
+                            if (value != null && value.length > 15) {
+                              return 'Please Enter text smaller than lenght 15';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                     ],
