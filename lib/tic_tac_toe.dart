@@ -81,9 +81,9 @@ class _TicTacToeState extends State<TicTacToe> {
 
   String _bannerText() {
     if (winner == Mark.O) {
-      return 'Winner\nPlayer O';
+      return 'Winner\n${_playerOname()}';
     } else if (winner == Mark.X) {
-      return 'Winner\nPlayer X';
+      return 'Winner\n${_playerXname()}';
     } else {
       return 'D R A W';
     }
