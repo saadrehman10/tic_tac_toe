@@ -134,13 +134,19 @@ class _TicTacToeState extends State<TicTacToe> {
                     alignment: Alignment.center,
                     width: 350,
                     height: 100,
-                    child: Text('Player "X"',
-                        style: TextStyle(
-                          fontSize: 40,
-                          color: currentPlayer == Mark.X && isDraw == false
-                              ? Colors.white
-                              : Colors.black,
-                        ))),
+                    child: Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.identity()
+                        ..rotateX(pi)
+                        ..rotateY(pi),
+                      child: Text('Player X',
+                          style: TextStyle(
+                            fontSize: 40,
+                            color: currentPlayer == Mark.X && isDraw == false
+                                ? Colors.white
+                                : Colors.black,
+                          )),
+                    )),
               ),
               Stack(
                 children: [
@@ -198,19 +204,13 @@ class _TicTacToeState extends State<TicTacToe> {
                   alignment: Alignment.center,
                   width: 350,
                   height: 100,
-                  child: Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.identity()
-                      ..rotateX(pi)
-                      ..rotateY(pi),
-                    child: Text('Player "O"',
-                        style: TextStyle(
-                          fontSize: 40,
-                          color: currentPlayer == Mark.O && isDraw == false
-                              ? Colors.white
-                              : Colors.black,
-                        )),
-                  )),
+                  child: Text('Player O',
+                      style: TextStyle(
+                        fontSize: 40,
+                        color: currentPlayer == Mark.O && isDraw == false
+                            ? Colors.white
+                            : Colors.black,
+                      ))),
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: Row(
