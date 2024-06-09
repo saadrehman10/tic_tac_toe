@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Tic Tac Toe',
       home: MyHomePage(),
       routes: {
-        '/': (context)=> MyHomePage(),
+        
         '/gamepage': (context) => const TicTacToe(),
       },
     );
