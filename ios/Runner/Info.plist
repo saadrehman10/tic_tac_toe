@@ -50,6 +50,8 @@
 	<string>UIInterfaceOrientationPortrait</string>
 	<!-- <string>UIInterfaceOrientationLandscapeLeft</string> -->
 	<!-- <string>UIInterfaceOrientationLandscapeRight</string> -->
+	<key>CFBundleDisplayName</key>
+    <string>Tic Tac Toe</string>
 	</array>
 </dict>
 </plist>
