@@ -17,6 +17,22 @@ class _TicTacToeState extends State<TicTacToe> {
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
 
+  String _playerXname() {
+    if (widget.playerX != "") {
+      return widget.playerX! + " X";
+    } else {
+      return 'Player X';
+    }
+  }
+
+  String _playerOname() {
+    if (widget.playerO != "") {
+      return widget.playerO! + " O";
+    } else {
+      return 'Player O';
+    }
+  }
+
   void _changeState(int index) {
     setState(() {
       if (boardState[index] == Mark.empty) {
@@ -139,7 +155,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       transform: Matrix4.identity()
                         ..rotateX(pi)
                         ..rotateY(pi),
-                      child: Text('Player X',
+                      child: Text(_playerXname(),
                           style: TextStyle(
                             fontSize: 40,
                             color: currentPlayer == Mark.X && isDraw == false
@@ -204,7 +220,7 @@ class _TicTacToeState extends State<TicTacToe> {
                   alignment: Alignment.center,
                   width: 350,
                   height: 100,
-                  child: Text('Player O',
+                  child: Text(_playerOname(),
                       style: TextStyle(
                         fontSize: 40,
                         color: currentPlayer == Mark.O && isDraw == false
