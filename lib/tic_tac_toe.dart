@@ -5,7 +5,8 @@ import 'dart:math';
 enum Mark { X, O, empty }
 
 class TicTacToe extends StatefulWidget {
-  const TicTacToe({super.key});
+  final String? playerX, playerO;
+  const TicTacToe({this.playerX, this.playerO, super.key});
 
   @override
   State<TicTacToe> createState() => _TicTacToeState();

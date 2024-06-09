@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/tic_tac_toe.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
@@ -143,7 +144,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: TextButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.pushNamed(context, '/gamepage');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => TicTacToe(
+                                        playerX: _playerXController.text,
+                                        playerO: _playerOController.text,
+                                      )));
                         }
                       },
                       style: TextButton.styleFrom(padding: EdgeInsets.all(10)),
