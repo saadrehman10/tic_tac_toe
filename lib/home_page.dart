@@ -143,14 +143,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.fromLTRB(20, 30, 10, 0),
                   child: TextButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) => TicTacToe(
-                                        playerX: _playerXController.text,
-                                        playerO: _playerOController.text,
-                                      )));
+                        if (_playerOController != "" ||
+                            _playerXController != "") {
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        TicTacToe(
+                                          playerX: _playerXController.text,
+                                          playerO: _playerOController.text,
+                                        )));
+                          }
+                        } else {
+                          Navigator.pushNamed(context, '/gamepage');
                         }
                       },
                       style: TextButton.styleFrom(padding: EdgeInsets.all(10)),
