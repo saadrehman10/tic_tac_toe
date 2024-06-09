@@ -85,11 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(
                               color: const Color.fromARGB(191, 255, 255, 255)),
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a name for Player X';
-                            }
-                            if (value.length > 15) {
-                              return 'Name must be less than 15 characters';
+                            if (value!.length >= 10) {
+                              return 'Name must be less than 10 characters';
                             }
                             return null;
                           },
@@ -131,11 +128,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(
                               color: const Color.fromARGB(191, 255, 255, 255)),
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a name for Player O';
-                            }
-                            if (value.length > 15) {
-                              return 'Name must be less than 15 characters';
+                            if (value!.length >= 10) {
+                              return 'Name must be less than 10 characters';
                             }
                             return null;
                           },
