@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  dynamic _controller;
+  MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +109,12 @@ class MyHomePage extends StatelessWidget {
                                   ))),
                           style: TextStyle(
                               color: const Color.fromARGB(191, 255, 255, 255)),
+                          controller: _controller,
                           validator: (value) {
                             if (value != null && value.length > 15) {
-                              return 'Please Enter text smaller than lenght 15';
+                              _controller =
+                                  'Please Enter text smaller than lenght 15';
+                              return _controller;
                             }
                             return null;
                           },
@@ -123,7 +127,14 @@ class MyHomePage extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(20, 30, 10, 0),
                   child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/gamepage');
+                        if (_controller != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Please re-enter the name')),
+                          );
+                        } else {
+                          Navigator.pushNamed(context, '/gamepage');
+                        }
                       },
                       style: TextButton.styleFrom(padding: EdgeInsets.all(10)),
                       child: Text(
