@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatelessWidget {
-  dynamic _controller;
+class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _playerXController = TextEditingController();
+  final TextEditingController _playerOController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,9 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
+          child: Form(
+            key: _formKey,
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -56,7 +66,8 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       Icon(Icons.clear, size: 65, color: Colors.white),
                       Expanded(
-                        child: TextField(
+                        child: TextFormField(
+                          controller: _playerXController,
                           decoration: InputDecoration(
                               hintText: 'Default Player X',
                               hintStyle: TextStyle(
@@ -73,6 +84,15 @@ class MyHomePage extends StatelessWidget {
                                   ))),
                           style: TextStyle(
                               color: const Color.fromARGB(191, 255, 255, 255)),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a name for Player X';
+                            }
+                            if (value.length > 15) {
+                              return 'Name must be less than 15 characters';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                     ],
@@ -93,6 +113,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
+                          controller: _playerOController,
                           decoration: InputDecoration(
                               hintText: 'Default Player O',
                               hintStyle: TextStyle(
@@ -109,12 +130,12 @@ class MyHomePage extends StatelessWidget {
                                   ))),
                           style: TextStyle(
                               color: const Color.fromARGB(191, 255, 255, 255)),
-                          controller: _controller,
                           validator: (value) {
-                            if (value != null && value.length > 15) {
-                              _controller =
-                                  'Please Enter text smaller than lenght 15';
-                              return _controller;
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a name for Player O';
+                            }
+                            if (value.length > 15) {
+                              return 'Name must be less than 15 characters';
                             }
                             return null;
                           },
@@ -127,12 +148,7 @@ class MyHomePage extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(20, 30, 10, 0),
                   child: TextButton(
                       onPressed: () {
-                        if (_controller != null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Please re-enter the name')),
-                          );
-                        } else {
+                        if (_formKey.currentState!.validate()) {
                           Navigator.pushNamed(context, '/gamepage');
                         }
                       },
@@ -142,7 +158,9 @@ class MyHomePage extends StatelessWidget {
                         style: TextStyle(fontSize: 22),
                       )),
                 ),
-              ]),
+              ],
+            ),
+          ),
         ),
       ),
     );
