@@ -204,7 +204,7 @@ class _TicTacToeState extends State<TicTacToe> {
                                   borderRadius: BorderRadius.circular(2),
                                   side: BorderSide(
                                     color:
-                                        const Color.fromARGB(255, 40, 40, 40),
+                                        Colors.white,
                                     width: 2,
                                   )),
                               color: Colors.black,
