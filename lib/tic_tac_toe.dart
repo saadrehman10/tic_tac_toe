@@ -165,7 +165,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       ),
                       alignment: Alignment.center,
                       width: double.infinity,
-                      height: 115,
+                      height: screenHeight * 0.13,
                       child: Transform(
                         alignment: Alignment.center,
                         transform: Matrix4.identity()
@@ -264,7 +264,7 @@ class _TicTacToeState extends State<TicTacToe> {
                     ),
                     alignment: Alignment.center,
                     width: double.infinity,
-                    height: 115,
+                    height: screenHeight * 0.13,
                     child: Column(
                       children: [
                         Row(
