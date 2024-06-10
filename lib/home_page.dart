@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/tic_tac_toe.dart';
 
-
-
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 

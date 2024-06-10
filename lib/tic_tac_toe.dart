@@ -5,8 +5,7 @@ import 'dart:math';
 enum Mark { X, O, empty }
 
 extension StringCaps on String {
-  String get captilize =>
-      this.substring(0).toUpperCase() + this.substring(1, this.length);
+  String get captilize => this[0].toUpperCase() + this.substring(1);
 }
 
 class TicTacToe extends StatefulWidget {
@@ -24,7 +23,7 @@ class _TicTacToeState extends State<TicTacToe> {
 
   String _playerXname() {
     if (widget.playerX != "") {
-      return widget.playerX! + " X";
+      return widget.playerX!.captilize + " X";
     } else {
       return 'Player X';
     }
@@ -32,7 +31,7 @@ class _TicTacToeState extends State<TicTacToe> {
 
   String _playerOname() {
     if (widget.playerO != "") {
-      return widget.playerO! + " O";
+      return widget.playerO!.captilize + " O";
     } else {
       return 'Player O';
     }
