@@ -163,13 +163,38 @@ class _TicTacToeState extends State<TicTacToe> {
                         transform: Matrix4.identity()
                           ..rotateX(pi)
                           ..rotateY(pi),
-                        child: Text(_playerXname(),
-                            style: TextStyle(
-                              fontSize: 40,
-                              color: currentPlayer == Mark.X && isDraw == false
-                                  ? Colors.white
-                                  : Colors.black,
-                            )),
+                        child: Column(
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
+                                  child: Text(
+                                    'wins: $playerO',
+                                    style: TextStyle(
+                                      color: currentPlayer == Mark.X &&
+                                              isDraw == false
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontSize: screenWidth * 0.037,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Text(_playerXname(),
+                                style: TextStyle(
+                                  fontSize: 40,
+                                  color:
+                                      currentPlayer == Mark.X && isDraw == false
+                                          ? Colors.white
+                                          : Colors.black,
+                                )),
+                          ],
+                        ),
                       )),
                 ),
                 Stack(
@@ -232,13 +257,37 @@ class _TicTacToeState extends State<TicTacToe> {
                     alignment: Alignment.center,
                     width: double.infinity,
                     height: 100,
-                    child: Text(_playerOname(),
-                        style: TextStyle(
-                          fontSize: 40,
-                          color: currentPlayer == Mark.O && isDraw == false
-                              ? Colors.white
-                              : Colors.black,
-                        ))),
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
+                              child: Text(
+                                'wins: $playerO',
+                                style: TextStyle(
+                                  color:
+                                      currentPlayer == Mark.O && isDraw == false
+                                          ? Colors.white
+                                          : Colors.black,
+                                  fontSize: screenWidth * 0.037,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(_playerOname(),
+                            style: TextStyle(
+                              fontSize: 40,
+                              color: currentPlayer == Mark.O && isDraw == false
+                                  ? Colors.white
+                                  : Colors.black,
+                            )),
+                      ],
+                    )),
                 Padding(
                   padding: const EdgeInsets.all(30),
                   child: Row(
