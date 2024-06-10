@@ -56,7 +56,7 @@ class _TicTacToeState extends State<TicTacToe> {
   void _checkIsDraw() {
     setState(() {
       bool allboxes = boardState.every((element) => element != Mark.empty);
-      if (allboxes && winner != Mark.empty) {
+      if (allboxes && winner == Mark.empty) {
         isDraw = true;
       } else {
         isDraw = false;
@@ -75,9 +75,9 @@ class _TicTacToeState extends State<TicTacToe> {
 
   Icon? markIcon(state) {
     if (state == Mark.X) {
-      return const Icon(Icons.clear, size: 93, color: Colors.white);
+      return const Icon(Icons.clear, size: 80, color: Colors.white);
     } else if (state == Mark.O) {
-      return const Icon(Icons.circle_outlined, size: 93, color: Colors.white);
+      return const Icon(Icons.circle_outlined, size: 80, color: Colors.white);
     } else {
       return null;
     }
@@ -122,7 +122,8 @@ class _TicTacToeState extends State<TicTacToe> {
 
   @override
   Widget build(BuildContext context) {
-    _checkWinner(currentPlayer);
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -152,7 +153,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     alignment: Alignment.center,
-                    width: 350,
+                    width: double.infinity,
                     height: 100,
                     child: Transform(
                       alignment: Alignment.center,
@@ -171,17 +172,16 @@ class _TicTacToeState extends State<TicTacToe> {
               Stack(
                 children: [
                   Container(
-                    width: 400,
-                    height: 400,
+                    width: double.infinity,
+                    height: screenWidth,
                     alignment: Alignment.center,
-                    color: const Color.fromARGB(255, 40, 40, 40),
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(0),
                     child: GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
+                          crossAxisSpacing: 0,
+                          mainAxisSpacing: 0,
                         ),
                         itemCount: 9,
                         itemBuilder: (BuildContext context, index) {
@@ -198,6 +198,11 @@ class _TicTacToeState extends State<TicTacToe> {
                               _changeState(index);
                               _checkIsDraw();
                             },
+                            shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                              color: const Color.fromARGB(255, 40, 40, 40),
+                              width: 5,
+                            )),
                             color: Colors.black,
                             child: Center(
                               child: markIcon(boardState[index]),
@@ -222,7 +227,7 @@ class _TicTacToeState extends State<TicTacToe> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   alignment: Alignment.center,
-                  width: 350,
+                  width: double.infinity,
                   height: 100,
                   child: Text(_playerOname(),
                       style: TextStyle(
