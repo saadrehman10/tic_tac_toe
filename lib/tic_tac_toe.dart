@@ -4,6 +4,11 @@ import 'dart:math';
 
 enum Mark { X, O, empty }
 
+extension StringCaps on String {
+  String get captilize =>
+      this.substring(0).toUpperCase() + this.substring(1, this.length);
+}
+
 class TicTacToe extends StatefulWidget {
   final String? playerX, playerO;
   const TicTacToe({this.playerX, this.playerO, super.key});

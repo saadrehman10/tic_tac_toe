@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/tic_tac_toe.dart';
 
-extension StringCaps on String {
-  String get captilize =>
-      this.substring(0).toUpperCase() + this.substring(1, this.length);
-}
 
-class MyHomePage extends StatefulWidget {
+
+class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _playerXController = TextEditingController();
+
   final TextEditingController _playerOController = TextEditingController();
 
   @override
