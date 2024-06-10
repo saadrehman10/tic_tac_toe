@@ -20,6 +20,7 @@ class _TicTacToeState extends State<TicTacToe> {
   Mark currentPlayer = Mark.X, winner = Mark.empty;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
+  static int drawCounter = 0;
 
   String _playerXname() {
     if (widget.playerX != "") {
@@ -58,6 +59,7 @@ class _TicTacToeState extends State<TicTacToe> {
       bool allboxes = boardState.every((element) => element != Mark.empty);
       if (allboxes && winner == Mark.empty) {
         isDraw = true;
+        drawCounter++;
       } else {
         isDraw = false;
       }
@@ -201,12 +203,8 @@ class _TicTacToeState extends State<TicTacToe> {
                                 _checkIsDraw();
                               },
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(2),
-                                  side: BorderSide(
-                                    color:
-                                        Colors.white,
-                                    width: 2,
-                                  )),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                               color: Colors.black,
                               child: Center(
                                 child: markIcon(boardState[index]),
@@ -242,10 +240,15 @@ class _TicTacToeState extends State<TicTacToe> {
                               : Colors.black,
                         ))),
                 Padding(
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(20),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Visibility(
+                        visible: drawCounter != 0,
+                        child: Text("DRAW COUNT: $drawCounter"),
+                      ),
                       IconButton(
                           onPressed: () {
                             _resetState();
