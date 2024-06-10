@@ -20,7 +20,7 @@ class _TicTacToeState extends State<TicTacToe> {
   Mark currentPlayer = Mark.X, winner = Mark.empty;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
-  static int drawCounter = 0, playerX = 0, playerO = 0;
+  int drawCounter = 0, playerX = 0, playerO = 0;
 
   String _playerXname() {
     if (widget.playerX != "") {
@@ -157,7 +157,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       ),
                       alignment: Alignment.center,
                       width: double.infinity,
-                      height: 100,
+                      height: 115,
                       child: Transform(
                         alignment: Alignment.center,
                         transform: Matrix4.identity()
@@ -256,7 +256,7 @@ class _TicTacToeState extends State<TicTacToe> {
                     ),
                     alignment: Alignment.center,
                     width: double.infinity,
-                    height: 100,
+                    height: 115,
                     child: Column(
                       children: [
                         Row(
@@ -289,7 +289,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       ],
                     )),
                 Padding(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
