@@ -20,7 +20,7 @@ class _TicTacToeState extends State<TicTacToe> {
   Mark currentPlayer = Mark.X, winner = Mark.empty;
   bool isDraw = false;
   List<Mark> boardState = List<Mark>.generate(9, (index) => Mark.empty);
-  static int drawCounter = 0;
+  static int drawCounter = 0, playerX = 0, playerO = 0;
 
   String _playerXname() {
     if (widget.playerX != "") {
@@ -125,7 +125,7 @@ class _TicTacToeState extends State<TicTacToe> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    // double screenHeight = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -240,26 +240,30 @@ class _TicTacToeState extends State<TicTacToe> {
                               : Colors.black,
                         ))),
                 Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Visibility(
                         visible: drawCounter != 0,
-                        child: Text("DRAW COUNT: $drawCounter"),
+                        child: Text(
+                          "DRAW COUNT: $drawCounter",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: screenHeight * 0.02),
+                        ),
                       ),
                       IconButton(
                           onPressed: () {
                             _resetState();
                           },
                           style: IconButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 22, 22, 22),
+                            backgroundColor: Color.fromARGB(255, 23, 23, 23),
                             padding: const EdgeInsets.all(10),
                           ),
-                          icon: const Icon(Icons.loop,
-                              size: 23, color: Colors.white)),
+                          icon: Icon(Icons.loop,
+                              size: screenHeight * 0.028, color: Colors.white)),
                     ],
                   ),
                 )
