@@ -20,8 +20,9 @@ class BannerDisplayed extends StatelessWidget {
       ),
       child: Text(textDisplayed,
           style: TextStyle(
+            overflow: TextOverflow.ellipsis,
             color: Colors.white,
-            fontSize: height * 0.18,
+            fontSize: height * 0.16,
           )),
     );
   }

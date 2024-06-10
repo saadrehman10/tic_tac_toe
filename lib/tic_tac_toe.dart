@@ -138,125 +138,131 @@ class _TicTacToeState extends State<TicTacToe> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: Container(
-                  margin: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: currentPlayer == Mark.X && isDraw == false
-                        ? Colors.green
-                        : Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  height: 100,
-                  child: Transform(
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: Container(
+                      margin: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: currentPlayer == Mark.X && isDraw == false
+                            ? Colors.green
+                            : Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      alignment: Alignment.center,
+                      width: double.infinity,
+                      height: 100,
+                      child: Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.identity()
+                          ..rotateX(pi)
+                          ..rotateY(pi),
+                        child: Text(_playerXname(),
+                            style: TextStyle(
+                              fontSize: 40,
+                              color: currentPlayer == Mark.X && isDraw == false
+                                  ? Colors.white
+                                  : Colors.black,
+                            )),
+                      )),
+                ),
+                Stack(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: screenWidth,
+                      alignment: Alignment.center,
+                      color: const Color.fromARGB(255, 40, 40, 40),
+                      padding: const EdgeInsets.all(5),
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 8,
+                          ),
+                          itemCount: 9,
+                          itemBuilder: (BuildContext context, index) {
+                            return MaterialButton(
+                              onLongPress: () {
+                                setState(() {
+                                  boardState[index] = Mark.empty;
+                                });
+                              },
+                              onPressed: () {
+                                _checkWinner(currentPlayer)
+                                    ? winner = currentPlayer
+                                    : null;
+                                _changeState(index);
+                                _checkIsDraw();
+                              },
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(2),
+                                  side: BorderSide(
+                                    color:
+                                        const Color.fromARGB(255, 40, 40, 40),
+                                    width: 2,
+                                  )),
+                              color: Colors.black,
+                              child: Center(
+                                child: markIcon(boardState[index]),
+                              ),
+                            );
+                          }),
+                    ),
+                    Visibility(
+                      visible: isDraw || winner != Mark.empty,
+                      child: BannerDisplayed(
+                        textDisplayed: _bannerText(),
+                        height: screenWidth,
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                    margin: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: currentPlayer == Mark.O && isDraw == false
+                          ? Colors.green
+                          : Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     alignment: Alignment.center,
-                    transform: Matrix4.identity()
-                      ..rotateX(pi)
-                      ..rotateY(pi),
-                    child: Text(_playerXname(),
+                    width: double.infinity,
+                    height: 100,
+                    child: Text(_playerOname(),
                         style: TextStyle(
                           fontSize: 40,
-                          color: currentPlayer == Mark.X && isDraw == false
+                          color: currentPlayer == Mark.O && isDraw == false
                               ? Colors.white
                               : Colors.black,
-                        )),
-                  )),
-            ),
-            Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: screenWidth,
-                  alignment: Alignment.center,
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(0),
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
-                      ),
-                      itemCount: 9,
-                      itemBuilder: (BuildContext context, index) {
-                        return MaterialButton(
-                          onLongPress: () {
-                            setState(() {
-                              boardState[index] = Mark.empty;
-                            });
-                          },
+                        ))),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
                           onPressed: () {
-                            _checkWinner(currentPlayer)
-                                ? winner = currentPlayer
-                                : null;
-                            _changeState(index);
-                            _checkIsDraw();
+                            _resetState();
                           },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(2),
-                              side: BorderSide(
-                                color: const Color.fromARGB(255, 40, 40, 40),
-                                width: 2,
-                              )),
-                          color: Colors.black,
-                          child: Center(
-                            child: markIcon(boardState[index]),
+                          style: IconButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 22, 22, 22),
+                            padding: const EdgeInsets.all(10),
                           ),
-                        );
-                      }),
-                ),
-                Visibility(
-                  visible: isDraw || winner != Mark.empty,
-                  child: BannerDisplayed(
-                    textDisplayed: _bannerText(),
-                    height: screenWidth,
+                          icon: const Icon(Icons.loop,
+                              size: 23, color: Colors.white)),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            Container(
-                margin: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: currentPlayer == Mark.O && isDraw == false
-                      ? Colors.green
-                      : Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                alignment: Alignment.center,
-                width: double.infinity,
-                height: 100,
-                child: Text(_playerOname(),
-                    style: TextStyle(
-                      fontSize: 40,
-                      color: currentPlayer == Mark.O && isDraw == false
-                          ? Colors.white
-                          : Colors.black,
-                    ))),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        _resetState();
-                      },
-                      style: IconButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 22, 22, 22),
-                        padding: const EdgeInsets.all(10),
-                      ),
-                      icon: const Icon(Icons.loop,
-                          size: 23, color: Colors.white)),
-                ],
-              ),
-            )
-          ]),
+                )
+              ]),
+        ),
+      ),
     );
   }
 }
