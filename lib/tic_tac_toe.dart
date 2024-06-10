@@ -123,7 +123,7 @@ class _TicTacToeState extends State<TicTacToe> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    // double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -138,125 +138,125 @@ class _TicTacToeState extends State<TicTacToe> {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                    margin: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: currentPlayer == Mark.X && isDraw == false
-                          ? Colors.green
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    height: 100,
-                    child: Transform(
-                      alignment: Alignment.center,
-                      transform: Matrix4.identity()
-                        ..rotateX(pi)
-                        ..rotateY(pi),
-                      child: Text(_playerXname(),
-                          style: TextStyle(
-                            fontSize: 40,
-                            color: currentPlayer == Mark.X && isDraw == false
-                                ? Colors.white
-                                : Colors.black,
-                          )),
-                    )),
-              ),
-              Stack(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: screenWidth,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(0),
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 0,
-                          mainAxisSpacing: 0,
-                        ),
-                        itemCount: 9,
-                        itemBuilder: (BuildContext context, index) {
-                          return MaterialButton(
-                            onLongPress: () {
-                              setState(() {
-                                boardState[index] = Mark.empty;
-                              });
-                            },
-                            onPressed: () {
-                              _checkWinner(currentPlayer)
-                                  ? winner = currentPlayer
-                                  : null;
-                              _changeState(index);
-                              _checkIsDraw();
-                            },
-                            shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                              color: const Color.fromARGB(255, 40, 40, 40),
-                              width: 5,
-                            )),
-                            color: Colors.black,
-                            child: Center(
-                              child: markIcon(boardState[index]),
-                            ),
-                          );
-                        }),
-                  ),
-                  Visibility(
-                    visible: isDraw || winner != Mark.empty,
-                    child: BannerDisplayed(
-                      textDisplayed: _bannerText(),
-                    ),
-                  ),
-                ],
-              ),
-              Container(
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
                   margin: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                    color: currentPlayer == Mark.O && isDraw == false
+                    color: currentPlayer == Mark.X && isDraw == false
                         ? Colors.green
                         : Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   alignment: Alignment.center,
                   width: double.infinity,
                   height: 100,
-                  child: Text(_playerOname(),
-                      style: TextStyle(
-                        fontSize: 40,
-                        color: currentPlayer == Mark.O && isDraw == false
-                            ? Colors.white
-                            : Colors.black,
-                      ))),
-              Padding(
-                padding: const EdgeInsets.all(15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          _resetState();
-                        },
-                        style: IconButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromARGB(255, 22, 22, 22),
-                          padding: const EdgeInsets.all(10),
-                        ),
-                        icon: const Icon(Icons.loop,
-                            size: 23, color: Colors.white)),
-                  ],
+                  child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.identity()
+                      ..rotateX(pi)
+                      ..rotateY(pi),
+                    child: Text(_playerXname(),
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: currentPlayer == Mark.X && isDraw == false
+                              ? Colors.white
+                              : Colors.black,
+                        )),
+                  )),
+            ),
+            Stack(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: screenWidth,
+                  alignment: Alignment.center,
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(0),
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                      ),
+                      itemCount: 9,
+                      itemBuilder: (BuildContext context, index) {
+                        return MaterialButton(
+                          onLongPress: () {
+                            setState(() {
+                              boardState[index] = Mark.empty;
+                            });
+                          },
+                          onPressed: () {
+                            _checkWinner(currentPlayer)
+                                ? winner = currentPlayer
+                                : null;
+                            _changeState(index);
+                            _checkIsDraw();
+                          },
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(2),
+                              side: BorderSide(
+                                color: const Color.fromARGB(255, 40, 40, 40),
+                                width: 2,
+                              )),
+                          color: Colors.black,
+                          child: Center(
+                            child: markIcon(boardState[index]),
+                          ),
+                        );
+                      }),
                 ),
-              )
-            ]),
-      ),
+                Visibility(
+                  visible: isDraw || winner != Mark.empty,
+                  child: BannerDisplayed(
+                    textDisplayed: _bannerText(),
+                    height: screenWidth,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+                margin: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: currentPlayer == Mark.O && isDraw == false
+                      ? Colors.green
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                alignment: Alignment.center,
+                width: double.infinity,
+                height: 100,
+                child: Text(_playerOname(),
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: currentPlayer == Mark.O && isDraw == false
+                          ? Colors.white
+                          : Colors.black,
+                    ))),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        _resetState();
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 22, 22, 22),
+                        padding: const EdgeInsets.all(10),
+                      ),
+                      icon: const Icon(Icons.loop,
+                          size: 23, color: Colors.white)),
+                ],
+              ),
+            )
+          ]),
     );
   }
 }

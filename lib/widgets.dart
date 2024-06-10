@@ -5,21 +5,23 @@ enum Mark { X, O, empty }
 
 class BannerDisplayed extends StatelessWidget {
   final String textDisplayed;
-  const BannerDisplayed({required this.textDisplayed, super.key});
+  final double height;
+  const BannerDisplayed(
+      {required this.height, required this.textDisplayed, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: 401,
-      width: 401,
+      height: height,
+      width: double.infinity,
       decoration: const BoxDecoration(
         color: Colors.black,
       ),
       child: Text(textDisplayed,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
-            fontSize: 60,
+            fontSize: height * 0.18,
           )),
     );
   }
