@@ -122,6 +122,14 @@ class _TicTacToeState extends State<TicTacToe> {
     return false;
   }
 
+  void _winupdate() {
+    currentPlayer != Mark.empty
+        ? currentPlayer == Mark.X
+            ? playerO++
+            : playerX++
+        : null;
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -173,7 +181,7 @@ class _TicTacToeState extends State<TicTacToe> {
                                   padding:
                                       const EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
                                   child: Text(
-                                    'wins: $playerO',
+                                    'wins: $playerX',
                                     style: TextStyle(
                                       color: currentPlayer == Mark.X &&
                                               isDraw == false
@@ -305,6 +313,7 @@ class _TicTacToeState extends State<TicTacToe> {
                       ),
                       IconButton(
                           onPressed: () {
+                            _winupdate();
                             _resetState();
                           },
                           style: IconButton.styleFrom(
