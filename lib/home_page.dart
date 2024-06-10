@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/tic_tac_toe.dart';
 
+extension StringCaps on String {
+  String get captilize =>
+      this.substring(0).toUpperCase() + this.substring(1, this.length);
+}
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({super.key});
 
