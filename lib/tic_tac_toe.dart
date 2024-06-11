@@ -168,14 +168,25 @@ class _TicTacToeState extends State<TicTacToe> {
                     ..rotateX(pi)
                     ..rotateY(pi),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        child: Text(_playerXname(),
+                            style: TextStyle(
+                              fontSize: 40,
+                              color: currentPlayer == Mark.X && isDraw == false
+                                  ? Colors.white
+                                  : Colors.black,
+                            )),
+                      ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.fromLTRB(12.0, 12.0, 0, 0),
+                                const EdgeInsets.fromLTRB(12.0, 10.0, 0, 0),
                             child: Text(
                               'X - W I N S : $playerX',
                               style: TextStyle(
@@ -189,13 +200,6 @@ class _TicTacToeState extends State<TicTacToe> {
                           ),
                         ],
                       ),
-                      Text(_playerXname(),
-                          style: TextStyle(
-                            fontSize: 40,
-                            color: currentPlayer == Mark.X && isDraw == false
-                                ? Colors.white
-                                : Colors.black,
-                          )),
                     ],
                   ),
                 )),
@@ -263,10 +267,20 @@ class _TicTacToeState extends State<TicTacToe> {
                 height: screenHeight * 0.13,
                 child: Column(
                   children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                      child: Text(_playerOname(),
+                          style: TextStyle(
+                            fontSize: 40,
+                            color: currentPlayer == Mark.O && isDraw == false
+                                ? Colors.white
+                                : Colors.black,
+                          )),
+                    ),
                     Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(12.0, 12.0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(12.0, 10.0, 0, 0),
                           child: Text(
                             'O - W I N S : $playerO',
                             style: TextStyle(
@@ -279,13 +293,6 @@ class _TicTacToeState extends State<TicTacToe> {
                         ),
                       ],
                     ),
-                    Text(_playerOname(),
-                        style: TextStyle(
-                          fontSize: 40,
-                          color: currentPlayer == Mark.O && isDraw == false
-                              ? Colors.white
-                              : Colors.black,
-                        )),
                   ],
                 )),
             Padding(
