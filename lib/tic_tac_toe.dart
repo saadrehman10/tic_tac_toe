@@ -51,7 +51,6 @@ class _TicTacToeState extends State<TicTacToe> {
       } else {
         boardState[index] == Mark.empty;
       }
-      _checkWinner(currentPlayer) ? winner = currentPlayer : null;
     });
   }
 
@@ -96,7 +95,7 @@ class _TicTacToeState extends State<TicTacToe> {
       return 'D R A W';
     }
   }
-
+  //first logic giveing different erros like required minimum 7 index value to process the winner
   // bool _checkWinner(player) {
   //   if (boardState[0] == player &&
   //       boardState[4] == player &&
@@ -104,7 +103,7 @@ class _TicTacToeState extends State<TicTacToe> {
   //     return true;
   //   }
   //   if (boardState[2] == player &&
-  //       boardState[4] == player &&
+  //      boardState[4] == player &&
   //       boardState[6] == player) {
   //     return true;
   //   }
@@ -123,7 +122,7 @@ class _TicTacToeState extends State<TicTacToe> {
 
   //   return false;
   // }
-
+  // second logic working just fine but if center box is filled last its draw in that case
   bool _checkWinner(player) {
     // Check diagonals
     if (boardState[0] == player &&
@@ -175,11 +174,11 @@ class _TicTacToeState extends State<TicTacToe> {
   }
 
   void _winupdate() {
-    currentPlayer != Mark.empty
-        ? currentPlayer == Mark.X
-            ? playerO++
-            : playerX++
-        : null;
+    if (winner == Mark.X) {
+      playerX++;
+    } else if (winner == Mark.O) {
+      playerO++;
+    }
   }
 
   @override
@@ -283,6 +282,11 @@ class _TicTacToeState extends State<TicTacToe> {
                           },
                           onPressed: () {
                             _changeState(index);
+                            setState(() {
+                              _checkWinner(currentPlayer)
+                                  ? winner = currentPlayer
+                                  : null;
+                            });
                             _checkIsDraw();
                           },
                           shape: RoundedRectangleBorder(
