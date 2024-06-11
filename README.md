@@ -44,5 +44,5 @@ You can download the latest version of the APK from the link below:
 - Download [Tic Tac Toe APK](https://github.com/saadrehman10/tic_tac_toe/releases/tag/1.2.0)
 
 ## Contact
-For any questions or support, please contact me at [saadrehman264@gmail.com](saadrehman264@gmail.com). You can also message me on LinkedIn for any queries.
+For any questions or support, please contact me at [saadrehman264@gmail.com](mailto:saadrehman264@gmail.com) You can also message me on LinkedIn for any queries.
 My LinkedIn is [itz-saad-ur-rehman](https://www.linkedin.com/in/itz-saad-ur-rehman/)
