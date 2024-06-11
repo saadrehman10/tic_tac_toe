@@ -5,13 +5,20 @@ Tic Tac Toe is a classic game built using Flutter 3.22.1. This app provides a si
 
 ## Screenshots & App Flow
 <div class="image-container">
-  <img src="readme.mi/1.jpg" alt="Screenshot 1" style="width: 200px; height: auto;">
-  <img src="readme.mi/2.jpg" alt="Screenshot 2" style="width: 200px; height: auto;">
-  <img src="readme.mi/3.jpg" alt="Screenshot 3" style="width: 200px; height: auto;">
-  <img src="readme.mi/4.jpg" alt="Screenshot 4" style="width: 200px; height: auto;">
-  <img src="readme.mi/5.jpg" alt="Screenshot 5" style="width: 200px; height: auto;">
-  <img src="readme.mi/6.jpg" alt="Screenshot 6" style="width: 200px; height: auto;">
-  <img src="readme.mi/7.jpg" alt="Screenshot 7" style="width: 200px; height: auto;">
+  <a>1.<a>
+  <img src="readme.mi/1.jpg" alt="Screenshot 1" style="width: 150px; height: auto;">
+  <a>2.<a>
+  <img src="readme.mi/2.jpg" alt="Screenshot 2" style="width: 150px; height: auto;">
+  <a>3.<a>
+  <img src="readme.mi/3.jpg" alt="Screenshot 3" style="width: 150px; height: auto;">
+  <a>4.<a>
+  <img src="readme.mi/4.jpg" alt="Screenshot 4" style="width: 150px; height: auto;">
+  <a>5.<a>
+  <img src="readme.mi/5.jpg" alt="Screenshot 5" style="width: 150px; height: auto;">
+  <a>6.<a>
+  <img src="readme.mi/6.jpg" alt="Screenshot 6" style="width: 150px; height: auto;">
+  <a>7.<a>
+  <img src="readme.mi/7.jpg" alt="Screenshot 7" style="width: 150px; height: auto;">
 </div>
 
 ## Installation
