@@ -1,16 +1,28 @@
-# tic_tac_toe
+# Tic Tac Toe
 
-A new Flutter project.
+## Description
+Tic Tac Toe is a classic game built using Flutter 3.22.1. This app provides a simple and engaging way to play Tic Tac Toe on your mobile device. The project utilizes Flutter Version Management (FVM) to manage the Flutter SDK versions efficiently. The app also incorporates the Flutter Icon Launcher for customizing app icons.
 
-## Getting Started
+## Screenshots
+(Include images of different screens of your app here)
 
-This project is a starting point for a Flutter application.
+## Installation
+To install and run the app, follow these steps:
+1. Clone the repository.
+2. Ensure you have Flutter 3.22.1 installed. You can use FVM to manage the Flutter version.
+3. Run `flutter pub get` to install dependencies.
+4. Use `flutter run` to launch the app on your device or emulator.
 
-A few resources to get you started if this is your first Flutter project:
+## Usage
+To play the game, simply launch the app and start a new game. Players take turns marking a square on the 3x3 grid. The first player to get three of their marks in a row (vertically, horizontally, or diagonally) wins the game. If all squares are filled and no player has three marks in a row, the game ends in a draw.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Built With
+- **Flutter 3.22.1**: The main framework used for building the app.
+- **Flutter Icon Launcher**: Used for customizing app icons.
+- **FVM (Flutter Version Management)**: Used for managing Flutter SDK versions.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contributing
+Contributions are welcome! If you have any suggestions or improvements, please create a pull request or open an issue.
+
+## Contact
+For any questions or support, please contact me at [Your Email]. You can also message me on LinkedIn or email me for any queries.
