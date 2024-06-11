@@ -150,184 +150,173 @@ class _TicTacToeState extends State<TicTacToe> {
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: Container(
-                      margin: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        color: currentPlayer == Mark.X && isDraw == false
-                            ? Colors.green
-                            : Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      height: screenHeight * 0.13,
-                      child: Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.identity()
-                          ..rotateX(pi)
-                          ..rotateY(pi),
-                        child: Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      12.0, 12.0, 0, 0),
-                                  child: Text(
-                                    'X - W I N S : $playerX',
-                                    style: TextStyle(
-                                      color: currentPlayer == Mark.X &&
-                                              isDraw == false
-                                          ? Colors.white
-                                          : Colors.black,
-                                      fontSize: screenWidth * 0.037,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(_playerXname(),
-                                style: TextStyle(
-                                  fontSize: 40,
-                                  color:
-                                      currentPlayer == Mark.X && isDraw == false
-                                          ? Colors.white
-                                          : Colors.black,
-                                )),
-                          ],
-                        ),
-                      )),
+          child: Column(children: [
+            Container(
+                margin: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: currentPlayer == Mark.X && isDraw == false
+                      ? Colors.green
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                Stack(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: screenWidth,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 40, 40, 40),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
+                alignment: Alignment.center,
+                width: double.infinity,
+                height: screenHeight * 0.13,
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()
+                    ..rotateX(pi)
+                    ..rotateY(pi),
+                  child: Column(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(12.0, 12.0, 0, 0),
+                            child: Text(
+                              'X - W I N S : $playerX',
+                              style: TextStyle(
+                                color:
+                                    currentPlayer == Mark.X && isDraw == false
+                                        ? Colors.white
+                                        : Colors.black,
+                                fontSize: screenWidth * 0.037,
+                              ),
+                            ),
                           ),
-                          itemCount: 9,
-                          itemBuilder: (BuildContext context, index) {
-                            return MaterialButton(
-                              onLongPress: () {
-                                setState(() {
-                                  boardState[index] = Mark.empty;
-                                });
-                              },
-                              onPressed: () {
-                                _checkWinner(currentPlayer)
-                                    ? winner = currentPlayer
-                                    : null;
-                                _changeState(index);
-                                _checkIsDraw();
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              color: Colors.black,
-                              child: Center(
-                                child: markIcon(boardState[index]),
-                              ),
-                            );
-                          }),
-                    ),
-                    Visibility(
-                      visible: isDraw || winner != Mark.empty,
-                      child: BannerDisplayed(
-                        textDisplayed: _bannerText(),
-                        height: screenWidth,
+                        ],
                       ),
-                    ),
-                  ],
-                ),
+                      Text(_playerXname(),
+                          style: TextStyle(
+                            fontSize: 40,
+                            color: currentPlayer == Mark.X && isDraw == false
+                                ? Colors.white
+                                : Colors.black,
+                          )),
+                    ],
+                  ),
+                )),
+            Stack(
+              children: [
                 Container(
-                    margin: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: currentPlayer == Mark.O && isDraw == false
-                          ? Colors.green
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    height: screenHeight * 0.13,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  width: double.infinity,
+                  height: screenWidth,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 40, 40, 40),
+                      borderRadius: BorderRadius.circular(8)),
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                      ),
+                      itemCount: 9,
+                      itemBuilder: (BuildContext context, index) {
+                        return MaterialButton(
+                          onLongPress: () {
+                            setState(() {
+                              boardState[index] = Mark.empty;
+                            });
+                          },
+                          onPressed: () {
+                            _checkWinner(currentPlayer)
+                                ? winner = currentPlayer
+                                : null;
+                            _changeState(index);
+                            _checkIsDraw();
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          color: Colors.black,
+                          child: Center(
+                            child: markIcon(boardState[index]),
+                          ),
+                        );
+                      }),
+                ),
+                Visibility(
+                  visible: isDraw || winner != Mark.empty,
+                  child: BannerDisplayed(
+                    textDisplayed: _bannerText(),
+                    height: screenWidth,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+                margin: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: currentPlayer == Mark.O && isDraw == false
+                      ? Colors.green
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                alignment: Alignment.center,
+                width: double.infinity,
+                height: screenHeight * 0.13,
+                child: Column(
+                  children: [
+                    Row(
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
-                              child: Text(
-                                ' W I N S : $playerO',
-                                style: TextStyle(
-                                  color:
-                                      currentPlayer == Mark.O && isDraw == false
-                                          ? Colors.white
-                                          : Colors.black,
-                                  fontSize: screenWidth * 0.037,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Text(_playerOname(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12.0, 12.0, 0, 0),
+                          child: Text(
+                            'O - W I N S : $playerO',
                             style: TextStyle(
-                              fontSize: 40,
                               color: currentPlayer == Mark.O && isDraw == false
                                   ? Colors.white
                                   : Colors.black,
-                            )),
-                      ],
-                    )),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Visibility(
-                        visible: drawCounter != 0,
-                        child: Text(
-                          "DRAW COUNT: $drawCounter",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: screenHeight * 0.02),
-                        ),
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            _winupdate();
-                            _resetState();
-                          },
-                          style: IconButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 23, 23, 23),
-                            padding: const EdgeInsets.all(10),
+                              fontSize: screenWidth * 0.037,
+                            ),
                           ),
-                          icon: Icon(Icons.loop,
-                              size: screenHeight * 0.028, color: Colors.white)),
-                    ],
+                        ),
+                      ],
+                    ),
+                    Text(_playerOname(),
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: currentPlayer == Mark.O && isDraw == false
+                              ? Colors.white
+                              : Colors.black,
+                        )),
+                  ],
+                )),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Visibility(
+                    visible: drawCounter != 0,
+                    child: Text(
+                      "DRAW COUNT: $drawCounter",
+                      style: TextStyle(
+                          color: Colors.white, fontSize: screenHeight * 0.02),
+                    ),
                   ),
-                )
-              ]),
+                  IconButton(
+                      onPressed: () {
+                        _winupdate();
+                        _resetState();
+                      },
+                      style: IconButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 23, 23, 23),
+                        padding: const EdgeInsets.all(10),
+                      ),
+                      icon: Icon(Icons.loop,
+                          size: screenHeight * 0.028, color: Colors.white)),
+                ],
+              ),
+            )
+          ]),
         ),
       ),
     );
