@@ -173,6 +173,46 @@ class _TicTacToeState extends State<TicTacToe> {
     return false;
   }
 
+  // bool _checkWinner(player) {
+  //   // Check diagonals
+  //   if ((boardState[0] == player &&
+  //           boardState[4] == player &&
+  //           boardState[8] == player) ||
+  //       (boardState[2] == player &&
+  //           boardState[4] == player &&
+  //           boardState[6] == player)) {
+  //     return true;
+  //   }
+
+  //   // Check rows
+  //   if ((boardState[0] == player &&
+  //           boardState[1] == player &&
+  //           boardState[2] == player) ||
+  //       (boardState[3] == player &&
+  //           boardState[4] == player &&
+  //           boardState[5] == player) ||
+  //       (boardState[6] == player &&
+  //           boardState[7] == player &&
+  //           boardState[8] == player)) {
+  //     return true;
+  //   }
+
+  //   // Check columns
+  //   if ((boardState[0] == player &&
+  //           boardState[3] == player &&
+  //           boardState[6] == player) ||
+  //       (boardState[1] == player &&
+  //           boardState[4] == player &&
+  //           boardState[7] == player) ||
+  //       (boardState[2] == player &&
+  //           boardState[5] == player &&
+  //           boardState[8] == player)) {
+  //     return true;
+  //   }
+
+  //   return false;
+  // }
+
   void _winupdate() {
     currentPlayer != Mark.empty
         ? currentPlayer == Mark.X
@@ -281,9 +321,6 @@ class _TicTacToeState extends State<TicTacToe> {
                             });
                           },
                           onPressed: () {
-                            _checkWinner(currentPlayer)
-                                ? winner = currentPlayer
-                                : null;
                             _changeState(index);
                             _checkIsDraw();
                           },
