@@ -122,9 +122,8 @@ class _TicTacToeState extends State<TicTacToe> {
 
   //   return false;
   // }
-  // second logic working just fine but if center box is filled last its draw in that case
+  // second logic working just fine error in state management
   bool _checkWinner(player) {
-    // Check diagonals
     if (boardState[0] == player &&
         boardState[4] == player &&
         boardState[8] == player) {
