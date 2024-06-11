@@ -75,11 +75,12 @@ class _TicTacToeState extends State<TicTacToe> {
     });
   }
 
-  Icon? markIcon(state) {
+  Icon? markIcon(state, double iconSize) {
     if (state == Mark.X) {
-      return const Icon(Icons.clear, size: 80, color: Colors.white);
+      return Icon(Icons.clear, size: iconSize * 0.1, color: Colors.white);
     } else if (state == Mark.O) {
-      return const Icon(Icons.circle_outlined, size: 80, color: Colors.white);
+      return Icon(Icons.circle_outlined,
+          size: iconSize * 0.1, color: Colors.white);
     } else {
       return null;
     }
@@ -194,7 +195,8 @@ class _TicTacToeState extends State<TicTacToe> {
                                     currentPlayer == Mark.X && isDraw == false
                                         ? Colors.white
                                         : Colors.black,
-                                fontSize: screenWidth * 0.037,
+                                fontSize: screenWidth * 0.03,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
@@ -240,7 +242,7 @@ class _TicTacToeState extends State<TicTacToe> {
                           ),
                           color: Colors.black,
                           child: Center(
-                            child: markIcon(boardState[index]),
+                            child: markIcon(boardState[index], screenHeight),
                           ),
                         );
                       }),
@@ -266,9 +268,10 @@ class _TicTacToeState extends State<TicTacToe> {
                 width: double.infinity,
                 height: screenHeight * 0.13,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                       child: Text(_playerOname(),
                           style: TextStyle(
                             fontSize: 40,
@@ -280,14 +283,15 @@ class _TicTacToeState extends State<TicTacToe> {
                     Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(12.0, 10.0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(12.0, 0.0, 0, 0),
                           child: Text(
                             'O - W I N S : $playerO',
                             style: TextStyle(
                               color: currentPlayer == Mark.O && isDraw == false
                                   ? Colors.white
                                   : Colors.black,
-                              fontSize: screenWidth * 0.037,
+                              fontSize: screenWidth * 0.03,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
