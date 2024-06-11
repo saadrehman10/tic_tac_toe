@@ -6,6 +6,24 @@ Sure, I can help you with that. You can use HTML and CSS to make the images resp
 Tic Tac Toe is a classic game built using Flutter 3.22.1. This app provides a simple and engaging way to play Tic Tac Toe on your mobile device. The project utilizes Flutter Version Management (FVM) to manage the Flutter SDK versions efficiently. The app also incorporates the Flutter Icon Launcher for customizing app icons.
 
 ## Screenshots & App Flow
+<style>
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.image-container img {
+  max-width: 45%;
+  margin: 5px;
+}
+
+@media (max-width: 600px) {
+  .image-container img {
+    max-width: 100%;
+  }
+}
+</style>
 <div class="image-container">
   <img src="readme.mi\1.jpg" alt="Screenshot 1">
   <img src="readme.mi\2.jpg" alt="Screenshot 2">
@@ -38,21 +56,4 @@ Contributions are welcome! If you have any suggestions or improvements, please c
 For any questions or support, please contact me at saadrehman264@gmail.com. You can also message me on LinkedIn for any queries.
 my Linkedin is <link>www.linkedin.com/in/itz-saad-ur-rehman</link>
 
-<style>
-.image-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
 
-.image-container img {
-  max-width: 45%;
-  margin: 5px;
-}
-
-@media (max-width: 600px) {
-  .image-container img {
-    max-width: 100%;
-  }
-}
-</style>
