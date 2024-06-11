@@ -178,10 +178,10 @@ class _TicTacToeState extends State<TicTacToe> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
+                                  padding: const EdgeInsets.fromLTRB(
+                                      12.0, 12.0, 0, 0),
                                   child: Text(
-                                    'wins: $playerX',
+                                    'X - W I N S : $playerX',
                                     style: TextStyle(
                                       color: currentPlayer == Mark.X &&
                                               isDraw == false
@@ -211,8 +211,10 @@ class _TicTacToeState extends State<TicTacToe> {
                       width: double.infinity,
                       height: screenWidth,
                       alignment: Alignment.center,
-                      color: const Color.fromARGB(255, 40, 40, 40),
                       padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 40, 40, 40),
+                          borderRadius: BorderRadius.circular(8)),
                       child: GridView.builder(
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
@@ -266,16 +268,16 @@ class _TicTacToeState extends State<TicTacToe> {
                     width: double.infinity,
                     height: screenHeight * 0.13,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8.0, 8.0, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(8.0, 0, 0, 0),
                               child: Text(
-                                'wins: $playerO',
+                                ' W I N S : $playerO',
                                 style: TextStyle(
                                   color:
                                       currentPlayer == Mark.O && isDraw == false
