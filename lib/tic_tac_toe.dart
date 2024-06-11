@@ -96,7 +96,35 @@ class _TicTacToeState extends State<TicTacToe> {
     }
   }
 
+  // bool _checkWinner(player) {
+  //   if (boardState[0] == player &&
+  //       boardState[4] == player &&
+  //       boardState[8] == player) {
+  //     return true;
+  //   }
+  //   if (boardState[2] == player &&
+  //       boardState[4] == player &&
+  //       boardState[6] == player) {
+  //     return true;
+  //   }
+  //   for (int i = 0; i < 3; i++) {
+  //     if (boardState[i * 3] == player &&
+  //         boardState[i * 3 + 1] == player &&
+  //         boardState[i * 3 + 2] == player) {
+  //       return true;
+  //     }
+  //     if (boardState[i] == player &&
+  //         boardState[i + 3] == player &&
+  //         boardState[i + 6] == player) {
+  //       return true;
+  //     }
+  //   }
+
+  //   return false;
+  // }
+
   bool _checkWinner(player) {
+    // Check diagonals
     if (boardState[0] == player &&
         boardState[4] == player &&
         boardState[8] == player) {
@@ -107,17 +135,39 @@ class _TicTacToeState extends State<TicTacToe> {
         boardState[6] == player) {
       return true;
     }
-    for (int i = 0; i < 3; i++) {
-      if (boardState[i * 3] == player &&
-          boardState[i * 3 + 1] == player &&
-          boardState[i * 3 + 2] == player) {
-        return true;
-      }
-      if (boardState[i] == player &&
-          boardState[i + 3] == player &&
-          boardState[i + 6] == player) {
-        return true;
-      }
+
+    // Check rows
+    if (boardState[0] == player &&
+        boardState[1] == player &&
+        boardState[2] == player) {
+      return true;
+    }
+    if (boardState[3] == player &&
+        boardState[4] == player &&
+        boardState[5] == player) {
+      return true;
+    }
+    if (boardState[6] == player &&
+        boardState[7] == player &&
+        boardState[8] == player) {
+      return true;
+    }
+
+    // Check columns
+    if (boardState[0] == player &&
+        boardState[3] == player &&
+        boardState[6] == player) {
+      return true;
+    }
+    if (boardState[1] == player &&
+        boardState[4] == player &&
+        boardState[7] == player) {
+      return true;
+    }
+    if (boardState[2] == player &&
+        boardState[5] == player &&
+        boardState[8] == player) {
+      return true;
     }
 
     return false;
